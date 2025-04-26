@@ -1,0 +1,559 @@
+/* Wrapper for entire profile page */
+/* Wrapper for whole profile */
+.JobSeekerProfile-wrapper {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Profile Card */
+.JobSeekerProfile-card {
+  flex: 0 0 280px;
+  background-color: #ffffff;
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.JobSeekerProfile-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Avatar */
+.JobSeekerProfile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #007bff;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.JobSeekerProfile-avatar:hover {
+  transform: scale(1.05);
+  border-color: #0056b3;
+}
+
+/* Basic Info inside Card */
+.JobSeekerProfile-basicInfo h2 {
+  font-size: 1.4rem;
+  margin: 10px 0 5px;
+  color: #222;
+}
+
+.JobSeekerProfile-basicInfo p {
+  font-size: 1rem;
+  color: #666;
+  margin: 4px 0;
+}
+
+/* Update Button inside Card */
+.JobSeekerProfile-updateBtn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 0.45rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.JobSeekerProfile-updateBtn:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+}
+
+/* If loading state on button (you mentioned it in your code) */
+.JobSeekerProfile-submitBtn.loading {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+
+  input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+  }
+
+  .JobSeekerProfile-formGroup input,
+.JobSeekerProfile-formGroup textarea {
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+/* Profile Details Card */
+.JobSeekerProfile-detailsCard {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+/* Card Title */
+.JobSeekerProfile-detailsCard h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Individual Profile Field Container */
+.JobSeekerProfile-detailsCard p {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  line-height: 1.6;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Bold Text for Field Labels */
+.JobSeekerProfile-detailsCard p strong {
+  color: #007bff;
+  min-width: 180px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Hover effect on profile details */
+.JobSeekerProfile-detailsCard p:hover {
+  background-color: #f9f9f9;
+  transform: scale(1.02);
+}
+/* Container for the buttons */
+.JobSeekerProfile-buttonsContainer {
+  display: flex;
+  gap: 20px; /* Space between buttons */
+  justify-content: flex-start;
+  margin-top: 20px; /* Space above buttons */
+}
+
+/* Styling for the Cancel button */
+.JobSeekerProfile-cancelBtn {
+  background-color: #e74c3c; /* Red color for cancel */
+  color: white;
+  padding: 14px 22px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: auto;
+}
+
+.JobSeekerProfile-cancelBtn:hover {
+  background-color: #c0392b; /* Darker red on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Add a border for visual emphasis */
+.JobSeekerProfile-cancelBtn {
+  border: 2px solid #e74c3c; /* Red border to match button color */
+}
+
+.JobSeekerProfile-cancelBtn:hover {
+  border-color: #c0392b; /* Darker border color on hover */
+}
+/* Styling for the Save Profile button */
+.JobSeekerProfile-updateBtn {
+  background-color: #007bff;
+  color: white;
+  padding: 14px 22px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: auto;
+}
+
+.JobSeekerProfile-updateBtn:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for the Change Profile button */
+.JobSeekerProfile-changePicBtn {
+  background-color: #28a745; /* Green color for change profile */
+  color: white;
+  padding: 14px 22px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.JobSeekerProfile-changePicBtn:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.JobSeekerProfile-updateBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+/* Responsive */
+/* Responsive */
+@media (max-width: 600px) {
+  .JobSeekerProfile-detailsCard {
+    padding: 25px 20px;
+  }
+
+  .JobSeekerProfile-detailsCard p {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .JobSeekerProfile-detailsCard p strong {
+    margin-bottom: 4px;
+  }
+
+  .JobSeekerProfile-row {
+    flex-direction: column; /* Stack fields vertically on smaller screens */
+  }
+
+  .JobSeekerProfile-field {
+    flex: 1 1 100%; /* Ensure fields take up full width on smaller screens */
+  }
+}
+/* Make the card responsive */
+@media (max-width: 900px) {
+  .JobSeekerProfile-detailsCard {
+    padding: 24px;
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  .JobSeekerProfile-detailsCard p {
+    font-size: 0.95rem;
+  }
+
+  .JobSeekerProfile-detailsCard p strong {
+    min-width: 140px;
+  }
+}
+
+  
+  /* Right Container with Form */
+  .JobSeekerProfile-container {
+    flex: 1;
+    min-width: 300px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Title */
+  .JobSeekerProfile-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+  }
+  /* Form */
+  .JobSeekerProfile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  /* Group fields into a row */
+  .JobSeekerProfile-field {
+    flex: 1 1 48%; /* Ensure two fields per row */
+    background-color: #f7f8f9;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ecf0f1;
+    font-size: 1rem;
+    line-height: 1.6;
+    box-sizing: border-box;
+    color: #34495e;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .JobSeekerProfile-field:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  .JobSeekerProfile-field strong {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+  
+  
+  
+  /* Individual input blocks */
+  .JobSeekerProfile-formGroup {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  /* Label */
+  .JobSeekerProfile-formGroup label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #444;
+  }
+
+  .JobSeekerProfile-detailsCard p:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+  
+  
+  /* Optional: Styling for smaller screens */
+@media (max-width: 768px) {
+  .JobSeekerProfile-row {
+    flex-direction: column; /* Stack fields vertically on smaller screens */
+  }
+
+  .JobSeekerProfile-field {
+    flex: 1 1 100%; /* Each field takes full width */
+    margin-bottom: 20px; /* Add space between stacked fields */
+  }
+}
+  /* Tooltip */
+  .JobSeekerProfile-formGroup .info-icon {
+    margin-left: 8px;
+    cursor: pointer;
+    color: #007bff;
+    font-size: 1rem;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+  
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;  /* Ensures the image is well-cropped */
+    border: 2px solid #ddd;  /* Optional border around the profile pic */
+  }
+
+  
+  .JobSeekerProfile-formGroup .tooltip-text {
+    visibility: hidden;
+    width: 220px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -110px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .JobSeekerProfile-formGroup:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  /* Input & Textarea */
+  .JobSeekerProfile-formGroup input,
+  .JobSeekerProfile-formGroup textarea,
+  .JobSeekerProfile-formGroup select {
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: #fafafa;
+    transition: all 0.2s ease;
+  }
+  
+  .JobSeekerProfile-formGroup input:focus,
+  .JobSeekerProfile-formGroup textarea:focus {
+    border-color: #007bff;
+    background-color: #fff;
+    outline: none;
+  }
+  
+  /* Validation error styles */
+  .JobSeekerProfile-formGroup.error input,
+  .JobSeekerProfile-formGroup.error textarea {
+    border-color: #e74c3c;
+    background-color: #f9e1e1;
+  }
+  
+  .JobSeekerProfile-formGroup.error .error-message {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 6px;
+  }
+  
+  /* Radio Group Styling */
+  .JobSeekerProfile-formGroup > div {
+    display: flex;
+    gap: 24px;
+    margin-top: 4px;
+  }
+  
+  .JobSeekerProfile-formGroup input[type="radio"] {
+    margin-right: 6px;
+  }
+  
+  .JobSeekerProfile-formGroup label input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  /* File Upload Inputs */
+  .JobSeekerProfile-formGroup input[type="file"] {
+    padding: 8px 0;
+  }
+  
+  /* File Upload Status */
+  .JobSeekerProfile-formGroup .file-status {
+    font-size: 0.9rem;
+    color: #28a745;
+    margin-top: 8px;
+  }
+  
+  /* Submit Button */
+  .JobSeekerProfile-submitBtn {
+    background-color: #007bff;
+    color: white;
+    padding: 14px 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    align-self: flex-start;
+  }
+  
+  .JobSeekerProfile-submitBtn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Add flexbox styling to rows */
+  .JobSeekerProfile-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  }
+
+
+  /* Responsive for tablets/mobiles */
+  @media (max-width: 900px) {
+    .JobSeekerProfile-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .JobSeekerProfile-card {
+      width: 100%;
+      max-width: 400px;
+    }
+  
+    .JobSeekerProfile-container {
+      width: 100%;
+      padding: 30px 20px;
+    }
+  
+    .JobSeekerProfile-row {
+      flex-direction: column;
+    }
+  
+    .JobSeekerProfile-formGroup {
+      min-width: 100%;
+    }
+  
+    .JobSeekerProfile-submitBtn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
+  /* Hide the ugly default file input */
+.file-input {
+  display: none;
+}
+
+.upload-box {
+  position: relative;
+  width: 100%;
+  border: 2px dashed #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.upload-box:hover {
+  border-color: #3b82f6;
+  background-color: #eff6ff; /* very light blue on hover */
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #64748b; /* gray-500 */
+  font-size: 0.9rem;
+  gap: 0.5rem;
+}
+
+.upload-icon {
+  font-size: 2rem;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.JobSeekerProfile-card, 
+.JobSeekerProfile-detailsCard, 
+.JobSeekerProfile-container {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
