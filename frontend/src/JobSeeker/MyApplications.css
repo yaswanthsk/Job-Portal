@@ -1,0 +1,244 @@
+/* Overall Container */
+.myApplications-container {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 30px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f7fa;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.myApplications-title {
+  font-size: 38px;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* No Applications Message */
+.myApplications-noApplications {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  font-weight: 500;
+}
+
+/* List Wrapper */
+.myApplications-listWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.myApplications-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.myApplications-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Job Details */
+.myApplications-jobDetails {
+  margin-bottom: 20px;
+}
+
+.myApplications-jobTitle {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.myApplications-companyName {
+  font-size: 18px;
+  color: #7f8c8d;
+}
+
+.myApplications-jobMeta {
+  font-size: 14px;
+  color: #95a5a6;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.myApplications-location {
+  color: #3498db;
+}
+
+.myApplications-salary {
+  font-weight: 600;
+  color: #27ae60;
+}
+
+/* Status Tag */
+.myApplications-statusTag {
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  text-align: center;
+  text-transform: capitalize;
+  display: inline-block;
+  margin-top: 15px;
+  width: fit-content;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.myApplications-accepted {
+  background-color: #27ae60; /* Green */
+  color: #fff;
+}
+
+.myApplications-rejected {
+  background-color: #e74c3c; /* Red */
+  color: #fff;
+}
+
+.myApplications-pending {
+  background-color: #f39c12; /* Yellow */
+  color: #fff;
+}
+
+/* Hover Effects for Cards */
+.myApplications-card:hover .myApplications-statusTag {
+  background-color: #444;
+  color: #fff;
+}
+
+/* Navbar Styling */
+.myApplications-navbar {
+  background-color: #3498db;
+  padding: 18px 0;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.myApplications-navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  background-color: #3498db;
+  transition: background-color 0.3s ease;
+}
+
+.myApplications-navbar a:hover {
+  background-color: #2980b9;
+}
+
+.myApplications-navbar .active {
+  background-color: #2980b9;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  /* At medium screens like laptops, reduce the grid layout to 2 columns */
+  .myApplications-listWrapper {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  }
+
+  .myApplications-title {
+    font-size: 34px;
+  }
+
+  .myApplications-jobTitle {
+    font-size: 20px;
+  }
+
+  .myApplications-location {
+    font-size: 14px;
+  }
+
+  .myApplications-salary {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* At tablet or smaller screens, change to 1 column */
+  .myApplications-listWrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .myApplications-card {
+    padding: 18px;
+  }
+
+  .myApplications-title {
+    font-size: 28px;
+  }
+
+  .myApplications-jobTitle {
+    font-size: 18px;
+  }
+
+  .myApplications-companyName {
+    font-size: 16px;
+  }
+
+  .myApplications-salary {
+    font-size: 14px;
+  }
+
+  .myApplications-statusTag {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* For small devices like mobile phones, make the text and cards smaller */
+  .myApplications-title {
+    font-size: 24px;
+  }
+
+  .myApplications-jobTitle {
+    font-size: 16px;
+  }
+
+  .myApplications-companyName {
+    font-size: 14px;
+  }
+
+  .myApplications-jobMeta {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .myApplications-statusTag {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  .myApplications-salary {
+    font-size: 12px;
+  }
+}
+.profile-photo-preview {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-photo-preview img {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3b82f6;
+}
