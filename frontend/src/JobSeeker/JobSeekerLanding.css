@@ -1,0 +1,451 @@
+/* Overall Container */
+.JobSeekerLanding-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    min-height: 100vh;
+  }
+  
+  /* Navbar */
+  .JobSeekerLanding-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #004080;
+    padding: 1rem 2rem;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .JobSeekerLanding-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .JobSeekerLanding-nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .JobSeekerLanding-nav-links li {
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .JobSeekerLanding-nav-links li:hover {
+    color: #ffc107;
+  }
+  
+  /* Hero Section */
+  .JobSeekerLanding-hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(to right, #004080, #0073e6);
+    color: white;
+  }
+  
+  .JobSeekerLanding-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .JobSeekerLanding-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .JobSeekerLanding-search-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .JobSeekerLanding-search-bar input {
+    padding: 0.75rem;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .JobSeekerLanding-search-bar button {
+    padding: 0.75rem 1.5rem;
+    background-color: #ffc107;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .JobSeekerLanding-search-bar button:hover {
+    background-color: #e0a800;
+  }
+  
+  /* Main Layout */
+  .JobSeekerLanding-main {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  /* Filters Sidebar */
+  .JobSeekerLanding-filters {
+    width: 250px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .JobSeekerLanding-filters details > summary {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #333;
+    padding: 8px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 8px;
+  }
+  
+  .JobSeekerLanding-filters h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: #2c3e50;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 4px;
+  }
+  
+  .JobSeekerLanding-filters label {
+    display: block;
+    margin-top: 1.2rem;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: #222;
+    font-size: 0.95rem;
+    text-align: left; /* ✅ Force label to align left */
+    padding-left: 2px;
+  }
+  
+  /* Target the filter group headers (Location, Job Type, etc.) */
+.JobSeekerLanding-filters details summary {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    text-align: left;
+    list-style: none; /* removes default arrow */
+    padding-left: 2px;
+  }
+  
+  /* Optional: Add a custom arrow */
+  .JobSeekerLanding-filters details summary::marker {
+    display: none;
+  }
+
+  .JobSeekerLanding-filters details summary::after {
+    content: "▼";
+    float: right;
+    transition: transform 0.3s ease;
+  }
+  
+  .JobSeekerLanding-filters details[open] summary::after {
+    content: "▲";
+  }
+  
+  
+  /* Dropdown Filters */
+  .JobSeekerLanding-dropdown {
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .JobSeekerLanding-dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #004080;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .JobSeekerLanding-dropdown-header:hover {
+    background-color: #e6f0ff;
+  }
+  
+  .JobSeekerLanding-dropdown-header::after {
+    content: "▼";
+    font-size: 0.75rem;
+    margin-left: auto;
+    color: #666;
+    transition: transform 0.2s ease;
+  }
+  
+  .JobSeekerLanding-dropdown-options {
+    padding: 10px 16px;
+    background-color: #fff;
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  
+  /* Checkbox Options */
+  .JobSeekerLanding-checkbox-option {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* ✅ Align checkboxes and labels to the left */
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 0.92rem;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+  }
+  
+  .JobSeekerLanding-filters details label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6px 0;
+    font-size: 0.93rem;
+    padding: 4px 2px;
+    color: #444;
+    border-bottom: 1px dotted #e5e5e5;
+  }
+  
+  /* Optional: Make checkboxes a bit smaller and aligned */
+  .JobSeekerLanding-filters details input[type="checkbox"] {
+    margin-left: 12px;
+    transform: scale(1.1);
+  }
+  
+  .JobSeekerLanding-checkbox-option input[type="checkbox"] {
+    accent-color: #004080;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  
+  /* Job Listings */
+  .JobSeekerLanding-jobs {
+    flex: 3;
+    padding: 2rem;
+  }
+  
+  .JobSeekerLanding-jobs h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .JobSeekerLanding-job-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .JobSeekerLanding-job-card {
+    position: relative; /* Make sure it's positioned relative so the icon can be placed in absolute position */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+/* Job Card - Save Icon (Bookmark) */
+.JobSeekerLanding-job-save-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.JobSeekerLanding-job-save-icon:hover {
+    color: #ffc107;
+}
+
+.JobSeekerLanding-job-save-icon.saved {
+    color: #007bff; /* Blue color for saved state */
+}
+
+.JobSeekerLanding-job-save-icon.saved i {
+    color: #ffcc00; /* You can change this color to suit your theme */
+    transform: scale(1.1); /* Optional: scale the icon to give a little effect */
+  }
+
+  .JobSeekerLanding-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  .JobSeekerLanding-link:hover {
+    text-decoration:none;
+  }
+  
+  
+  .JobSeekerLanding-job-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .JobSeekerLanding-filters details label span {
+    flex: 1;
+    text-align: left;
+  }
+
+  .JobSeekerLanding-filters details label input[type="checkbox"] {
+  transform: scale(1.1);
+  accent-color: #007bff;
+  margin-left: 10px;
+}
+  
+  .JobSeekerLanding-job-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .JobSeekerLanding-job-card p {
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  
+  .JobSeekerLanding-job-card button {
+    background-color: #004080;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .JobSeekerLanding-job-card button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Suggestions Dropdown */
+  .JobSeekerLanding-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 82%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 1000;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .JobSeekerLanding-suggestions li {
+    padding: 12px 16px;
+    color: #222;
+    font-size: 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s ease;
+  }
+  
+  .JobSeekerLanding-suggestions li:hover {
+    background-color: rgba(0, 115, 230, 0.1);
+    color: #004080;
+  }
+  
+  /* Add this to your JobSeekerLanding.css or a separate file */
+.SavedJobs-logoutBtn {
+  padding: 5px 16px;
+  background-color: #dc3545; /* Red for logout */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.SavedJobs-logoutBtn:hover {
+  background-color: #c82333;
+}
+
+  /* Animation */
+  @keyframes JobSeekerLanding-fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .JobSeekerLanding-main {
+      flex-direction: column;
+      padding: 1rem;
+    }
+  
+    .JobSeekerLanding-navbar {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .JobSeekerLanding-nav-links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .JobSeekerLanding-filters {
+        flex: 1;
+        background-color: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        max-width: 250px;
+      }
+      
+    .JobSeekerLanding-jobs {
+      padding: 1rem 0;
+    }
+  
+    .JobSeekerLanding-search-bar {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.5rem;
+    }
+  
+    .JobSeekerLanding-search-bar input {
+      width: 100%;
+    }
+  
+    .JobSeekerLanding-job-card {
+      padding: 1rem;
+    }
+  }
+  
