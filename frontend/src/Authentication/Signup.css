@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+.auth-background {
+  background: linear-gradient(to bottom, #e1ecf4, #f5f7fa);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+}
+
+@keyframes backgroundFade {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+.jobportal-signup-container {
+  width: 100%;
+  max-width: 800px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 3rem 3.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  color: #333;
+  transform: translateY(-50px);
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.password-strength-container {
+  margin-top: 8px;
+  margin-bottom: 1rem;
+}
+
+.password-strength-bar {
+  height: 6px;
+  border-radius: 4px;
+  transition: width 0.5s ease, background-color 0.3s ease;
+}
+
+.password-strength-text {
+  font-size: 14px;
+  margin-top: 4px;
+  display: inline-block;
+  color: #555;
+  font-weight: 500;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.jobportal-signup-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #0077b6; /* LinkedIn Blue */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: fadeInTitle 0.8s ease-out;
+}
+
+@keyframes fadeInTitle {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.jobportal-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2rem;
+  transition: all 0.3s ease;
+}
+
+.jobportal-form-grid.full-width {
+  grid-template-columns: 1fr;
+}
+
+.jobportal-signup-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+  font-size: 16px;
+}
+
+.jobportal-signup-form input,
+.jobportal-signup-form select {
+  width: 100%;
+  padding: 14px;
+  background-color: #f5f7fa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.jobportal-signup-form input:hover,
+.jobportal-signup-form select:hover {
+  background-color: #ffffff;
+  border-color: #0077b6; /* LinkedIn Blue */
+}
+
+.jobportal-signup-form input:focus,
+.jobportal-signup-form select:focus {
+  outline: none;
+  border-color: #0077b6; /* LinkedIn Blue */
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0, 119, 182, 0.5); /* Soft blue focus */
+  transform: scale(1.02);
+}
+
+.jobportal-signup-form input::placeholder {
+  color: #bbb;
+}
+.input-error-container {
+  margin-top: 17px; /* Space between input and error */
+}
+
+.input-error {
+  font-size: 14px;
+  color: #ff6b6b;
+  margin-top: 5px; /* Ensures the error message is properly spaced */
+  padding-left: 10px; /* Optional: Adds padding for better readability */
+  display: block;
+  opacity: 0;
+  animation: fadeInError 0.5s forwards;
+}
+
+@keyframes fadeInError {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+  
+.jobportal-signup-button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, #0077b6, #00aaff); /* Blue gradient */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
+}
+
+.jobportal-signup-button:hover {
+  background: linear-gradient(135deg, #005f8a, #009ecf); /* Darker gradient */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 119, 182, 0.3);
+}
+
+.jobportal-signup-button:active {
+  transform: translateY(2px);
+}
+
+.jobportal-employer-fields {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+}
+
+.jobportal-employer-fields.show {
+  opacity: 1;
+  max-height: 300px;
+}
+
+.login-redirect {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 14px;
+    color: #6b7280; /* neutral gray */
+  }
+  
+  .login-redirect a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  
+  .login-redirect a:hover {
+    color: #1e40af;
+    text-decoration: underline;
+  }
+  
+
+
+@media (max-width: 768px) {
+  .jobportal-form-grid,
+  .jobportal-employer-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .jobportal-signup-button {
+    width: 100%;
+  }
+
+  .jobportal-signup-title {
+    font-size: 26px;
+  }
+
+  .jobportal-signup-container {
+    padding: 2rem;
+  }
+
+  .jobportal-signup-button {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .jobportal-signup-form input,
+  .jobportal-signup-form select {
+    padding: 12px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .jobportal-signup-container {
+    padding: 2rem;
+  }
+
+  .jobportal-signup-title {
+    font-size: 24px;
+  }
+
+  .jobportal-signup-button {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .jobportal-signup-form input,
+  .jobportal-signup-form select {
+    padding: 12px;
+    font-size: 15px;
+  }
+}
