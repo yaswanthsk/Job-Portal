@@ -1,0 +1,347 @@
+/* Home.css */
+
+.Home-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f9f9f9;
+}
+
+/* Navbar */
+.Home-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004080;
+  padding: 1rem 2rem;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.Home-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.Home-nav-links a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.Home-nav-links a.signup {
+  background-color: #ffffff;
+  color: #004080;
+}
+
+.Home-nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Hero Section */
+.Home-hero {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  background: linear-gradient(to right, #e0ecff, #f0f8ff);
+}
+
+.Home-title {
+  font-size: 3rem;
+  color: #004080;
+  margin-bottom: 1rem;
+}
+
+.Home-subtitle {
+  font-size: 1.2rem;
+  color: #333;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Carousel Section */
+.Home-image-carousel {
+  width: 100%;
+  height: auto;
+  gap: 1rem;
+  padding: 1rem;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.Home-image-carousel::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar */
+}
+
+.Home-carousel-img {
+  width: 1000px; /* Increased size */
+  height: 500px; /* Increased size */
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out;
+}
+
+.Home-carousel-img:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Call to Action Section */
+.Home-cta {
+  text-align: center;
+  margin: 4rem 0;
+}
+
+.Home-cta h2 {
+  font-size: 2.5rem;
+  color: #004080;
+  margin-bottom: 1rem;
+}
+
+.Home-cta p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.Home-cta-buttons a {
+  text-decoration: none;
+  margin: 0 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  color: white;
+  border-radius: 6px;
+}
+
+.Home-btn.primary {
+  background-color: #004080;
+}
+
+.Home-job-item .Home-btn.secondary {
+  background-color: #007acc; /* Change this to your desired color */
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  transition: background 0.3s ease;
+}
+
+.Home-job-item .Home-btn.secondary:hover {
+  background-color: #005fa3; /* Darker shade on hover */
+}
+
+
+/* Featured Jobs Section */
+.Home-featured-jobs {
+  background: #f7f7f7;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+
+.Home-featured-jobs h2 {
+  font-size: 2.5rem;
+  color: #004080;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.Home-job-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scrollbar-width: none; /* Firefox */
+  scroll-snap-type: x mandatory;
+  scroll-padding: 1rem;
+}
+
+.Home-job-carousel::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.Home-job-item {
+  flex: 0 0 auto;
+  width: 300px; /* Fixed width to allow sliding */
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+}
+
+.Home-job-item:hover {
+  transform: scale(1.03);
+}
+
+.Home-job-item h3 {
+  color: #004080;
+  margin-bottom: 0.5rem;
+}
+
+.Home-job-item p {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.Home-job-item .Home-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+}
+
+/* How It Works Section */
+.Home-how-it-works {
+  padding: 4rem 2rem;
+  background: #f4f9ff;
+  text-align: center;
+}
+
+.Home-how-it-works h2 {
+  font-size: 2.5rem;
+  color: #004080;
+  margin-bottom: 2rem;
+}
+
+.Home-how-it-steps {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.Home-how-it-step {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 250px;
+}
+
+.Home-how-it-step h3 {
+  color: #004080;
+  margin-bottom: 1rem;
+}
+
+/* Testimonials Section */
+.Home-testimonials {
+  background: #f7f7f7;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.Home-testimonials h2 {
+  font-size: 2.5rem;
+  color: #004080;
+  margin-bottom: 2rem;
+}
+
+.Home-testimonial-list {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.Home-testimonial-item {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: left;
+}
+
+.Home-testimonial-item h4 {
+  font-size: 1rem;
+  color: #004080;
+  margin-top: 1rem;
+}
+
+/* Newsletter Section */
+.Home-newsletter {
+  background: #004080;
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.Home-newsletter h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.Home-newsletter p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.Home-newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.Home-newsletter-form input {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.Home-newsletter-form button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  background-color: #ff6600;
+  color: white;
+  border-radius: 5px;
+  border: none;
+}
+
+/* Footer Section */
+.Home-footer {
+  background-color: #00274d;
+  color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Home-footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.Home-footer-section {
+  min-width: 200px;
+}
+
+.Home-footer-section h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  border-bottom: 1px solid white;
+  padding-bottom: 0.5rem;
+}
+
+.Home-footer-section p,
+.Home-footer-section a {
+  color: #e0e0e0;
+  margin: 0.2rem 0;
+  text-decoration: none;
+  display: block;
+}
+
+.Home-footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #ccc;
+}
