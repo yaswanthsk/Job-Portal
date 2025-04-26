@@ -1,0 +1,121 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+.post-job-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: url('https://images.unsplash.com/photo-1506748686218-23361b9f3b76?fit=crop&w=1000&h=1000&auto=format&dpr=1.5') no-repeat center center/cover;
+  justify-content: center;
+  padding: 0;
+}
+
+.post-job-content {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 3rem;
+  max-width: 900px;
+  width: 100%;
+  margin: 90px auto 20px auto;
+  border-radius: 16px;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+
+.post-job-title {
+  text-align: center;
+  color: #222;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.post-job-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.input-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 1rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 10px 10px 35px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background: transparent;
+  font-size: 1rem;
+  color: #333;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.form-input:focus {
+  border-bottom: 2px solid #00bcd4;
+  background-color: rgba(0, 188, 212, 0.05);
+}
+
+/* Submit Button */
+.form-submit-button {
+  grid-column: span 2;
+  background-color: #00bcd4;
+  color: #fff;
+  padding: 10px 20px; /* Decreased padding for a smaller button */
+  border-radius: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-submit-button:hover {
+  background-color: #0097a7;
+  transform: scale(1.05);
+}
+
+.input-error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  padding-left: 35px;
+  display: block;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .post-job-content {
+    padding: 2rem;
+  }
+
+  .post-job-title {
+    font-size: 1.6rem;
+  }
+
+  .post-job-form {
+    grid-template-columns: 1fr;
+  }
+
+  .form-submit-button {
+    grid-column: span 1;
+  }
+}
