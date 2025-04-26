@@ -1,0 +1,189 @@
+/* Container */
+.SavedJobs-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  margin: 0;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* Navbar */
+.SavedJobs-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004080;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.SavedJobs-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.SavedJobs-nav-links {
+  list-style: none;
+  display: flex;
+  text-decoration: none;
+  gap: 1.5rem;
+}
+
+.SavedJobs-nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.SavedJobs-link {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Hero Section */
+.SavedJobs-hero {
+  padding: 2rem;
+  text-align: center;
+  background-color: #e9f0f7;
+  color: #004080;
+}
+
+.SavedJobs-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.SavedJobs-subtitle {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Main Layout */
+.SavedJobs-main {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+}
+
+/* Sidebar (Filters) */
+.SavedJobs-filters {
+  width: 250px;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  height: fit-content;
+}
+
+/* Jobs Section */
+.SavedJobs-jobs {
+  flex: 1;
+}
+
+.SavedJobs-jobs h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #004080;
+}
+
+/* Job List */
+.SavedJobs-job-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Job Card */
+.SavedJobs-job-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  position: relative;
+  transition: transform 0.2s ease;
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+.SavedJobs-job-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Bookmark Icon */
+.SavedJobs-job-save-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #007bff;
+  font-size: 1.2rem;
+}
+
+.SavedJobs-job-save-icon.saved {
+  color: #ff9800;
+}
+
+/* Job Info */
+.SavedJobs-job-card h3 {
+  font-size: 1.3rem;
+  color: #004080;
+  margin-bottom: 0.5rem;
+}
+
+.SavedJobs-job-card p {
+  font-size: 0.95rem;
+  margin: 0.3rem 0;
+  color: #555;
+}
+
+/* Button */
+.SavedJobs-job-card button {
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  background-color: #004080;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.SavedJobs-job-card button:hover {
+  background-color: #0059b3;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .SavedJobs-main {
+    flex-direction: column;
+  }
+
+  .SavedJobs-filters {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .SavedJobs-navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .SavedJobs-nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
