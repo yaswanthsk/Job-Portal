@@ -236,3 +236,69 @@
     }
   }
   
+
+  /* Highlight Profile Completion Incomplete */
+.profile-warning {
+  background-color: #f8d7da; /* Light red background for warning */
+  color: #721c24; /* Dark red text */
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.profile-warning i {
+  font-size: 20px;
+}
+
+.profile-warning a {
+  color: #721c24;
+  text-decoration: underline;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+/* Disabled Apply Button Styles */
+.JobDetails-cta button:disabled {
+  background: #d1d8e0; /* Light gray background */
+  color: #999; /* Light gray text */
+  cursor: not-allowed; /* Show a "not allowed" cursor */
+  border: 1px solid #ccc; /* Light border */
+  transform: scale(1); /* Remove hover effect */
+}
+
+.JobDetails-cta button:disabled:hover {
+  background: #d1d8e0; /* Keep same background for hover */
+  transform: scale(1); /* Prevent hover scaling */
+}
+
+/* Hover effect for the Apply Now button when enabled */
+.JobDetails-cta button:hover {
+  background: linear-gradient(135deg, #5f87d5, #304d8a); /* Darker hover effect */
+  transform: scale(1.03);
+}
+
+/* Improved the "Apply Now" button text color when disabled */
+.JobDetails-cta button:disabled {
+  opacity: 0.7; /* Slightly transparent when disabled */
+}
+
+/* Responsive adjustments for warning and button */
+@media (max-width: 768px) {
+  .profile-warning {
+    font-size: 14px; /* Smaller font size for mobile devices */
+    padding: 8px;
+  }
+  
+  .JobDetails-cta button {
+    width: 100%; /* Make Apply button full width on mobile */
+  }
+}
+

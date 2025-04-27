@@ -178,7 +178,7 @@ const JobSeekerLanding = () => {
   const handleSaveJob = async (job) => {
     const token = localStorage.getItem('token');
     if (!token) {
-      alert('Please login to save jobs.');
+      toast.warning('Please login to save jobs.');
       return;
     }
   

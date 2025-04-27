@@ -71,14 +71,14 @@ const JobSeekerProfile = () => {
 
             if (name === 'resume') {
                 if (file.type !== 'application/pdf') {
-                    alert('Please upload a valid PDF file for your resume.');
+                    toast.warning('Please upload a valid PDF file for your resume.');
                     return;
                 }
                 setFormData(prev => ({ ...prev, resume: file }));
                 setResumeStatus('Resume uploaded ✅');
             } else if (name === 'profile_photo') {
                 if (!['image/jpeg', 'image/png'].includes(file.type)) {
-                    alert('Please upload a valid image (JPEG/PNG) for the profile photo.');
+                    toast.warning('Please upload a valid image (JPEG/PNG) for the profile photo.');
                     return;
                 }
                 if (name === 'profile_photo') {

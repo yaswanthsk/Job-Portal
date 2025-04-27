@@ -8,6 +8,8 @@ import './JobDetails.css';
 const JobDetails = () => {
   const { jobId } = useParams();
   const [job, setJob] = useState(null);
+  const [profileCompleted, setProfileCompleted] = useState(false);  // Added state for profile completion check
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchJobDetails = async () => {
@@ -19,10 +21,32 @@ const JobDetails = () => {
       }
     };
 
+    const checkProfileCompletion = async () => {
+      try {
+        const response = await api.get('/auth/jobseeker/profile');
+        if (response.status === 200 && response.data) {
+          // Assume that if profile data exists, it means the profile is completed.
+          setProfileCompleted(true);
+        } else {
+          setProfileCompleted(false);
+        }
+      } catch (error) {
+        console.error('Error fetching profile data:', error);
+        setProfileCompleted(false);
+      }
+      setLoading(false);  // Set loading to false after the check is completed
+    };
+
     fetchJobDetails();
+    checkProfileCompletion();
   }, [jobId]);
 
   const handleApply = async () => {
+    if (!profileCompleted) {
+      toast.error('Please complete your profile before applying for a job.');
+      return;
+    }
+
     try {
       const response = await api.post(`/auth/apply-for-job/${jobId}`);
       if (response.status === 200) {
@@ -35,9 +59,10 @@ const JobDetails = () => {
       console.error('Error applying for the job:', error);
     }
   };
-  
 
-  if (!job) return <p className="JobDetails-loading">Loading job details...</p>;
+  if (loading) return <p className="JobDetails-loading">Loading job details...</p>;
+
+  if (!job) return <p className="JobDetails-loading">Job not found.</p>;
 
   return (
     <>
@@ -50,11 +75,9 @@ const JobDetails = () => {
               alt="Company Logo"
               className="JobDetails-company-logo"
             />
-            
             <div className="JobDetails-title-section">
               <h2>{job.title}</h2>
-              <p className="JobDetails-company">{job.company_name}</p> 
-
+              <p className="JobDetails-company">{job.company_name}</p>
               <p className="JobDetails-location"><i className="fas fa-map-marker-alt"></i> {job.location}</p>
             </div>
           </div>
@@ -86,27 +109,37 @@ const JobDetails = () => {
           </div>
           <hr className="JobDetails-divider" />
 
-
           <div className="JobDetails-about-company">
             <h4 className="JobDetails-left-align">About the Company</h4>
             <p>{job.company_description || "We are a leading tech company focused on building scalable, efficient solutions for global impact."}</p>
           </div>
           <hr className="JobDetails-divider" />
 
-          
-
           <div className="JobDetails-how-to-apply">
             <h4 className="JobDetails-left-align">Tips before applying</h4>
             <p>Make sure your resume highlights your relevant skills. Include measurable achievements. Customize your cover letter!</p>
           </div>
+
           <div className="JobDetails-back">
             <a href="/jobseeker/dashboard"><i className="fas fa-arrow-left"></i> Back to Listings</a>
           </div>
 
-
+          {/* Apply button */}
           <div className="JobDetails-cta">
-            <button onClick={handleApply}>Apply Now</button>
+            <button
+              onClick={handleApply}
+              disabled={!profileCompleted}  // Disable if profile is incomplete
+            >
+              Apply Now
+            </button>
           </div>
+
+          {/* Profile completion message */}
+          {!profileCompleted && !loading && (
+            <div className="profile-warning">
+              <i className="fas fa-exclamation-circle"></i> You must complete your profile before applying for this job.
+            </div>
+          )}
         </div>
       </div>
     </>

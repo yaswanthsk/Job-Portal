@@ -5,7 +5,9 @@ import EmployerNavbar from '../Navbar/EmployerNavbar';
 import { toast } from 'react-toastify';
 
 import './ViewApplication.css';
+
 const BASE_URL = 'http://localhost:5000';
+
 const ViewApplications = () => {
     const [applications, setApplications] = useState([]);
     const [visibleResume, setVisibleResume] = useState(null);
@@ -19,10 +21,8 @@ const ViewApplications = () => {
                 const userId = decoded.userId;
 
                 const res = await api.get(`/auth/employer-applications/${userId}`);
-
                 setApplications(res.data);
                 console.log(res.data);
-
             } catch (error) {
                 console.error('Error fetching applications:', error);
             }
@@ -38,7 +38,8 @@ const ViewApplications = () => {
 
             await api.put(
                 `/auth/application-status/${applicationId}`,
-                { status: newStatus });
+                { status: newStatus }
+            );
 
             setApplications((prev) =>
                 prev.map((app) =>
@@ -48,7 +49,6 @@ const ViewApplications = () => {
                 )
             );
             toast.success(`Application ${newStatus.toLowerCase()} successfully!`);
-
         } catch (error) {
             toast.error('Failed to update status');
             console.error('Error updating status:', error);
@@ -81,14 +81,27 @@ const ViewApplications = () => {
                                     <p><strong>Email:</strong> {app.email}</p>
                                     <p><strong>Phone:</strong> {app.phone || 'N/A'}</p>
                                     <p><strong>Skills:</strong> {app.skills}</p>
-                                    {app.linkedin_url && <p><a href={app.linkedin_url} target="_blank" rel="noreferrer">🔗 LinkedIn</a></p>}
-                                    {app.github_url && <p><a href={app.github_url} target="_blank" rel="noreferrer">💻 GitHub</a></p>}
+                                    {app.linkedin_url && (
+                                        <p>
+                                            <a href={app.linkedin_url} target="_blank" rel="noreferrer">
+                                                🔗 LinkedIn
+                                            </a>
+                                        </p>
+                                    )}
+                                    {app.github_url && (
+                                        <p>
+                                            <a href={app.github_url} target="_blank" rel="noreferrer">
+                                                💻 GitHub
+                                            </a>
+                                        </p>
+                                    )}
                                     <div className="status-section">
-                                        <span className={`status-tag ${app.application_status.toLowerCase()}`}>
+                                        <span
+                                            className={`status-tag ${app.application_status.toLowerCase()}`}
+                                        >
                                             {app.application_status}
                                         </span>
                                     </div>
-
                                 </div>
 
                                 <div className="application-right">
@@ -110,7 +123,12 @@ const ViewApplications = () => {
                                             >
                                                 📄 {visibleResume === app.application_id ? 'Hide Resume' : 'Preview Resume'}
                                             </button>
-                                            <a href={`${BASE_URL}/uploads/${app.resume_link}`} target="_blank" rel="noreferrer" className="resume-link">
+                                            <a
+                                                href={`${BASE_URL}/uploads/${app.resume_link}`}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="resume-link"
+                                            >
                                                 🔗 View/Download Resume
                                             </a>
                                         </>
@@ -120,8 +138,9 @@ const ViewApplications = () => {
 
                             {visibleResume === app.application_id && app.resume_link && (
                                 <div className="resume-preview">
+                                    {console.log("Preview URL:", BASE_URL + '/uploads/' + app.resume_link)}  {/* Debugging line */}
                                     <iframe
-                                        src={`https://docs.google.com/gview?url=${BASE_URL}/uploads/${app.resume_link}&embedded=true`}
+                                        src={`${BASE_URL}/uploads/${app.resume_link}`}
                                         width="100%"
                                         height="500px"
                                         frameBorder="0"
