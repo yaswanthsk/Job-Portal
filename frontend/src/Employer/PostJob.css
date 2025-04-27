@@ -1,19 +1,20 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
 
+/* Container */
 .post-job-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background: url('https://images.unsplash.com/photo-1506748686218-23361b9f3b76?fit=crop&w=1000&h=1000&auto=format&dpr=1.5') no-repeat center center/cover;
-  justify-content: center;
   padding: 0;
 }
 
+/* Content box */
 .post-job-content {
   background: rgba(255, 255, 255, 0.9);
   padding: 3rem;
   max-width: 900px;
-  width: 100%;
+  width: 90%;
   margin: 90px auto 20px auto;
   border-radius: 16px;
   box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
@@ -21,6 +22,7 @@
   overflow: hidden;
 }
 
+/* Title */
 .post-job-title {
   text-align: center;
   color: #222;
@@ -29,17 +31,20 @@
   font-weight: 600;
 }
 
+/* Form grid */
 .post-job-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
+/* Input wrapper */
 .input-wrapper {
   position: relative;
   margin-bottom: 1.5rem;
 }
 
+/* Fontawesome icon */
 .input-icon {
   position: absolute;
   left: 10px;
@@ -49,6 +54,7 @@
   font-size: 1rem;
 }
 
+/* Inputs and textarea */
 .form-input {
   width: 100%;
   padding: 10px 10px 10px 35px;
@@ -59,6 +65,7 @@
   color: #333;
   transition: all 0.3s ease;
   outline: none;
+  resize: none; /* stop textarea from manually resizing */
 }
 
 .form-input::placeholder {
@@ -71,13 +78,13 @@
   background-color: rgba(0, 188, 212, 0.05);
 }
 
-/* Submit Button */
+/* Submit button */
 .form-submit-button {
   grid-column: span 2;
   background-color: #00bcd4;
   color: #fff;
-  padding: 10px 20px; /* Decreased padding for a smaller button */
-  border-radius: none;
+  padding: 12px 20px;
+  border-radius: 8px;
   border: none;
   font-size: 1rem;
   cursor: pointer;
@@ -92,6 +99,7 @@
   transform: scale(1.05);
 }
 
+/* Error message */
 .input-error {
   color: red;
   font-size: 0.85rem;
@@ -100,22 +108,61 @@
   display: block;
 }
 
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .post-job-content {
+    padding: 2.5rem;
+  }
 
-/* Responsive */
+  .post-job-title {
+    font-size: 2rem;
+  }
+}
+
 @media (max-width: 768px) {
   .post-job-content {
     padding: 2rem;
   }
 
   .post-job-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .post-job-form {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stack one below other */
+    gap: 1.5rem;
   }
 
   .form-submit-button {
     grid-column: span 1;
+    width: 80%;
+    align-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-job-content {
+    padding: 1.5rem;
+    margin: 70px 1rem 20px 1rem;
+  }
+
+  .post-job-title {
+    font-size: 1.6rem;
+  }
+
+  .form-input {
+    font-size: 0.95rem;
+    padding: 10px 10px 10px 32px;
+  }
+
+  .input-icon {
+    font-size: 0.9rem;
+    left: 8px;
+  }
+
+  .form-submit-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
   }
 }

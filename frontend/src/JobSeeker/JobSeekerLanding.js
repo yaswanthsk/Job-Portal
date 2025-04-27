@@ -206,7 +206,7 @@ const JobSeekerLanding = () => {
   return (
     <div className="JobSeekerLanding-container">
       <nav className="JobSeekerLanding-navbar">
-        <div className="JobSeekerLanding-logo">Jobify</div>
+        <div className="JobSeekerLanding-logo">CAREER CONNECT</div>
         <ul className="JobSeekerLanding-nav-links">
           <li>Browse Jobs</li>
           <li>

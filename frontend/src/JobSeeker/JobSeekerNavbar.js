@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
-import './JobSeekerLanding'; // Reusing existing CSS class names
+import './JobSeekerLanding.css'; // Reusing existing CSS class names
 
 const JobSeekerNavbar = () => {
 

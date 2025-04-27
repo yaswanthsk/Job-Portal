@@ -32,8 +32,11 @@ const signup = async (req, res) => {
     // If any operation fails, roll back the transaction
     await connection.rollback();
     console.error('Error during signup:', error);
-    res.status(500).send({ message: 'Error registering user', error: error.message });
-  } finally {
+    if (error.code === 'ER_DUP_ENTRY') {
+      res.status(400).send({ message: 'Email already exists' });
+    } else {
+      res.status(500).send({ message: 'Error registering user', error: error.message });
+    }  } finally {
     // Release the connection back to the pool
     connection.release();
   }

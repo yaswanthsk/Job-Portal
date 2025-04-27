@@ -125,12 +125,13 @@
 
 .input-error {
   font-size: 14px;
-  color: #ff6b6b;
+  color: #e53935;
   margin-top: 5px; /* Ensures the error message is properly spaced */
   padding-left: 10px; /* Optional: Adds padding for better readability */
   display: block;
   opacity: 0;
   animation: fadeInError 0.5s forwards;
+  
 }
 
 @keyframes fadeInError {
@@ -231,6 +232,45 @@
   }
 }
 
+
+/* Very Small Screens (<= 400px) */
+@media (max-width: 400px) {
+  .auth-background {
+    padding: 1rem 0.5rem;
+  }
+
+  .jobportal-signup-container {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .jobportal-signup-title {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .jobportal-signup-form input,
+  .jobportal-signup-form select {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .password-strength-text {
+    font-size: 12px;
+  }
+
+  .jobportal-signup-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .login-redirect {
+    font-size: 13px;
+    margin-top: 1rem;
+  }
+}
+
+
 @media (max-width: 480px) {
   .jobportal-signup-container {
     padding: 2rem;
@@ -249,5 +289,31 @@
   .jobportal-signup-form select {
     padding: 12px;
     font-size: 15px;
+  }
+}
+
+/* Extra tiny screens (<= 360px) */
+@media (max-width: 360px) {
+  .jobportal-signup-container {
+    padding: 1rem;
+  }
+
+  .jobportal-signup-title {
+    font-size: 20px;
+  }
+
+  .password-strength-bar {
+    height: 4px;
+  }
+
+  .jobportal-signup-form input,
+  .jobportal-signup-form select {
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+
+  .jobportal-signup-button {
+    padding: 9px;
+    font-size: 13px;
   }
 }

@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
+/* Make background fit better on mobile */
+.auth-background {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(120deg, #f0f8ff, #e0f7fa);
+}
+
 /* Container */
 .jobportal-login-container {
   display: flex;
@@ -111,6 +118,8 @@
   border-radius: 50%;
   border-top: 3px solid transparent;
   animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+
 }
 
 /* Error Messages */
@@ -210,59 +219,56 @@
     font-size: 14px;
   }
 }
-
-/* Small Screens (max-width: 480px) */
+/* Adjust container on very small devices */
 @media (max-width: 480px) {
-  .jobportal-login-title {
-    font-size: 20px;
-  }
-
   .jobportal-login-container {
-    padding: 0 1rem;
-  }
-
-  .jobportal-login-form {
-    padding: 1.2rem;
-    width: 100%;
-    max-width: 100%;
-    border-radius: 10px;
-  }
-
-  .jobportal-login-button {
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  .jobportal-login-form input {
-    font-size: 14px;
-    padding: 10px 14px;
-  }
-}
-
-/* Extra Small Screens (max-width: 375px) */
-@media (max-width: 375px) {
-  .jobportal-login-title {
-    font-size: 18px;
+    padding: 0.5rem;
   }
 
   .jobportal-login-form {
     padding: 1rem;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+
+  .jobportal-login-title {
+    font-size: 20px;
+  }
+
+  .jobportal-login-form input {
+    font-size: 14px;
+    padding: 10px;
   }
 
   .jobportal-login-button {
-    padding: 10px;
+    padding: 12px;
     font-size: 14px;
+  }
+
+  .jobportal-login-switch {
+    font-size: 13px;
+    margin-top: 1rem;
+  }
+}
+
+/* Super small screens (iPhone SE size) */
+@media (max-width: 360px) {
+  .jobportal-login-form {
+    padding: 0.8rem;
   }
 
   .jobportal-login-form input {
     font-size: 13px;
-    padding: 9px 12px;
+    padding: 8px 10px;
   }
 
-  .jobportal-login-switch {
-    font-size: 12px;
+  .jobportal-login-button {
+    font-size: 13px;
+    padding: 10px;
   }
 }
+
 
 .jobportal-login-switch {
   text-align: center;

@@ -217,47 +217,6 @@
 }
 
 
-/* Responsive */
-/* Responsive */
-@media (max-width: 600px) {
-  .JobSeekerProfile-detailsCard {
-    padding: 25px 20px;
-  }
-
-  .JobSeekerProfile-detailsCard p {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .JobSeekerProfile-detailsCard p strong {
-    margin-bottom: 4px;
-  }
-
-  .JobSeekerProfile-row {
-    flex-direction: column; /* Stack fields vertically on smaller screens */
-  }
-
-  .JobSeekerProfile-field {
-    flex: 1 1 100%; /* Ensure fields take up full width on smaller screens */
-  }
-}
-/* Make the card responsive */
-@media (max-width: 900px) {
-  .JobSeekerProfile-detailsCard {
-    padding: 24px;
-    max-width: 100%;
-    margin-top: 20px;
-  }
-
-  .JobSeekerProfile-detailsCard p {
-    font-size: 0.95rem;
-  }
-
-  .JobSeekerProfile-detailsCard p strong {
-    min-width: 140px;
-  }
-}
-
   
   /* Right Container with Form */
   .JobSeekerProfile-container {
@@ -336,17 +295,7 @@
   }
   
   
-  /* Optional: Styling for smaller screens */
-@media (max-width: 768px) {
-  .JobSeekerProfile-row {
-    flex-direction: column; /* Stack fields vertically on smaller screens */
-  }
 
-  .JobSeekerProfile-field {
-    flex: 1 1 100%; /* Each field takes full width */
-    margin-bottom: 20px; /* Add space between stacked fields */
-  }
-}
   /* Tooltip */
   .JobSeekerProfile-formGroup .info-icon {
     margin-left: 8px;
@@ -409,18 +358,47 @@
   }
   
   /* Validation error styles */
-  .JobSeekerProfile-formGroup.error input,
-  .JobSeekerProfile-formGroup.error textarea {
-    border-color: #e74c3c;
-    background-color: #f9e1e1;
-  }
-  
-  .JobSeekerProfile-formGroup.error .error-message {
-    color: #e74c3c;
-    font-size: 0.85rem;
-    margin-top: 6px;
-  }
-  
+/* If a field has validation error, highlight the input or textarea */
+.JobSeekerProfile-formGroup.error input,
+.JobSeekerProfile-formGroup.error textarea,
+.JobSeekerProfile-formGroup.error select {
+  border: 2px solid #e74c3c; /* Red border */
+  background-color: #ffe6e6; /* Light red background */
+  animation: shake 0.3s; /* Shake animation when error first appears */
+}
+
+/* Error message below input */
+.JobSeekerProfile-formGroup .error-message {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Shaking animation for error fields */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+/* Optional: Add error icon */
+.JobSeekerProfile-formGroup.error .error-icon {
+  color: #e74c3c;
+  font-size: 1rem;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+/* Tooltip hint if needed */
+.JobSeekerProfile-formGroup.error .tooltip-text {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
   /* Radio Group Styling */
   .JobSeekerProfile-formGroup > div {
     display: flex;
@@ -476,36 +454,7 @@
   }
 
 
-  /* Responsive for tablets/mobiles */
-  @media (max-width: 900px) {
-    .JobSeekerProfile-wrapper {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .JobSeekerProfile-card {
-      width: 100%;
-      max-width: 400px;
-    }
-  
-    .JobSeekerProfile-container {
-      width: 100%;
-      padding: 30px 20px;
-    }
-  
-    .JobSeekerProfile-row {
-      flex-direction: column;
-    }
-  
-    .JobSeekerProfile-formGroup {
-      min-width: 100%;
-    }
-  
-    .JobSeekerProfile-submitBtn {
-      width: 100%;
-      text-align: center;
-    }
-  }
+
   
   /* Hide the ugly default file input */
 .file-input {
@@ -557,3 +506,62 @@
   animation: fadeInUp 0.6s ease forwards;
 }
 
+
+/* Small Tablets and Phones */
+@media (max-width: 900px) {
+  .JobSeekerProfile-wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .JobSeekerProfile-card {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 20px;
+  }
+
+  .JobSeekerProfile-container {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .JobSeekerProfile-title {
+    font-size: 1.6rem;
+  }
+
+  .JobSeekerProfile-buttonsContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .JobSeekerProfile-updateBtn,
+  .JobSeekerProfile-cancelBtn,
+  .JobSeekerProfile-changePicBtn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 600px) {
+  .JobSeekerProfile-avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .JobSeekerProfile-formGroup input,
+  .JobSeekerProfile-formGroup textarea,
+  .JobSeekerProfile-formGroup select {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .upload-box {
+    padding: 15px;
+  }
+
+  .JobSeekerProfile-title {
+    font-size: 1.4rem;
+  }
+}

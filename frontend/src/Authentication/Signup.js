@@ -94,7 +94,21 @@ const Signup = () => {
       }, 2000);
     } catch (error) {
       console.error('Error during signup:', error);
-      toast.error('Signup failed! Please try again.');
+
+      if (error.response && error.response.status === 400) {
+        const errorMessage = error.response.data.message || 'Email already exists.';
+        
+        if (errorMessage.includes('Email')) {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            email: 'Email already exists',  // ✅ Setting error under email field
+          }));
+        } else {
+          toast.error(errorMessage); // fallback
+        }
+      } else {
+        toast.error('Signup failed! Please try again.');
+      }
     }
   };
 

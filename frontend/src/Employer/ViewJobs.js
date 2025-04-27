@@ -5,14 +5,17 @@ import { jwtDecode } from 'jwt-decode';
 import Modal from 'react-modal';
 import { toast } from 'react-toastify';
 
-Modal.setAppElement('#root'); // Set app root for accessibility
-
+Modal.setAppElement('#root');
 
 const ViewJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingJob, setEditingJob] = useState(null);
+
+  const [confirmModalOpen, setConfirmModalOpen] = useState(false);
+  const [confirmAction, setConfirmAction] = useState(null);
+  const [selectedJobId, setSelectedJobId] = useState(null);
 
   const [filters, setFilters] = useState({
     jobType: '',
@@ -32,7 +35,6 @@ const ViewJobs = () => {
         const fetchJobs = async () => {
           try {
             const response = await api.get(`/auth/employer-jobs?userId=${userId}`);
-            console.log('Fetched jobs:', response.data);
             setJobs(response.data);
             setFilteredJobs(response.data);
           } catch (error) {
@@ -44,24 +46,19 @@ const ViewJobs = () => {
       } catch (error) {
         console.error('Error decoding token:', error);
       }
-    } else {
-      console.log('No token found in localStorage');
     }
   }, []);
 
   useEffect(() => {
     let filtered = [...jobs];
-
     if (filters.jobType) {
       filtered = filtered.filter(job => job.job_type === filters.jobType);
     }
-
     if (filters.location) {
       filtered = filtered.filter(job =>
         job.location.toLowerCase().includes(filters.location.toLowerCase())
       );
     }
-
     if (filters.experience) {
       const [minExp, maxExp] = filters.experience.split('-').map(Number);
       filtered = filtered.filter(job => {
@@ -69,7 +66,6 @@ const ViewJobs = () => {
         return !isNaN(jobExp) && jobExp >= minExp && jobExp <= maxExp;
       });
     }
-
     if (filters.salary) {
       const maxSalary = parseInt(filters.salary);
       filtered = filtered.filter(job => {
@@ -80,7 +76,6 @@ const ViewJobs = () => {
         return jobSalary <= maxSalary;
       });
     }
-
     if (filters.sortBy === 'date') {
       filtered.sort((a, b) => new Date(b.posted_at) - new Date(a.posted_at));
     } else if (filters.sortBy === 'salary-desc') {
@@ -96,7 +91,6 @@ const ViewJobs = () => {
         return salaryA - salaryB;
       });
     }
-
     setFilteredJobs(filtered);
   }, [filters, jobs]);
 
@@ -127,63 +121,60 @@ const ViewJobs = () => {
       if (!token) return;
 
       const response = await api.put(`/auth/update-job/${editingJob.job_id}`, editingJob);
-
       toast.success(response.data.message || 'Job updated successfully!');
-      
-      // Ensure you're comparing `job_id` and updating the list accordingly
+
       const updatedList = jobs.map(job =>
         job.job_id === editingJob.job_id ? editingJob : job
       );
-      
-      // Update both jobs and filteredJobs state
       setJobs(updatedList);
       setFilteredJobs(updatedList);
-      
-      // Close modal after update
       closeModal();
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to update job.');
     }
   };
-  
-  const handleDeleteJob = async (jobId) => {
-    if (!window.confirm("Are you sure you want to delete this job?")) return;
 
+  const handleDeleteJob = async (jobId) => {
+    setSelectedJobId(jobId);
+    setConfirmAction('delete');
+    setConfirmModalOpen(true);
+  };
+
+  const handleCloseJob = async (jobId) => {
+    setSelectedJobId(jobId);
+    setConfirmAction('close');
+    setConfirmModalOpen(true);
+  };
+
+  const confirmActionHandler = async () => {
     try {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await api.delete(`/auth/delete-job/${jobId}`);
-      toast.success(response.data.message || "Job deleted successfully!");
-      const updatedJobs = jobs.filter(job => job.job_id !== jobId);
-      setJobs(updatedJobs);
-      setFilteredJobs(updatedJobs);
+      if (confirmAction === 'delete') {
+        const response = await api.delete(`/auth/delete-job/${selectedJobId}`);
+        toast.success(response.data.message || "Job deleted successfully!");
+        const updatedJobs = jobs.filter(job => job.job_id !== selectedJobId);
+        setJobs(updatedJobs);
+        setFilteredJobs(updatedJobs);
+      } else if (confirmAction === 'close') {
+        const response = await api.put(`/auth/close-job/${selectedJobId}`, {});
+        toast.success(response.data.message || "Job status updated to Closed!");
+        const updatedJobs = jobs.map(job =>
+          job.job_id === selectedJobId ? { ...job, job_status: 'closed' } : job
+        );
+        setJobs(updatedJobs);
+        setFilteredJobs(updatedJobs);
+      }
     } catch (error) {
-      toast.error(error.response?.data?.message || "Failed to delete job.");
+      toast.error(error.response?.data?.message || "Action failed.");
+    } finally {
+      setConfirmModalOpen(false);
+      setSelectedJobId(null);
+      setConfirmAction(null);
     }
   };
 
-  const handleCloseJob = async (jobId) => {
-    if (!window.confirm("Are you sure you want to close this job?")) return;
-  
-    try {
-      const response = await api.put(`/auth/close-job/${jobId}`, {});
-      console.log('Response from API:', response);  // Log the response here
-      toast.success(response.data.message || "Job status updated to Closed!");
-  
-      // Update the job status in the jobs list
-      const updatedJobs = jobs.map(job =>
-        job.job_id === jobId ? { ...job, job_status: 'closed' } : job
-      );
-      setJobs(updatedJobs);
-      setFilteredJobs(updatedJobs);
-    } catch (error) {
-      console.error('💥 Error occurred while closing job:', error);
-      toast.error(error.response?.data?.message || "Failed to close job.");
-    }
-  };
-  
-  
   return (
     <div className="view-jobs-container">
       <h2>All Job Listings</h2>
@@ -196,22 +187,13 @@ const ViewJobs = () => {
           <option value="Part-time">Part-time</option>
           <option value="Internship">Internship</option>
         </select>
-
-        <input
-          type="text"
-          name="location"
-          placeholder="Location"
-          value={filters.location}
-          onChange={handleChange}
-        />
-
+        <input type="text" name="location" placeholder="Location" value={filters.location} onChange={handleChange} />
         <select name="experience" value={filters.experience} onChange={handleChange}>
           <option value="">Any Experience</option>
           <option value="0-1">0-1 Years</option>
           <option value="2-4">2-4 Years</option>
           <option value="5-10">5-10 Years</option>
         </select>
-
         <select name="salary" value={filters.salary} onChange={handleChange}>
           <option value="">Any Salary</option>
           <option value="300000">Up to ₹3 LPA</option>
@@ -221,9 +203,7 @@ const ViewJobs = () => {
           <option value="1000000">Up to ₹10 LPA</option>
           <option value="2000000">Up to ₹20 LPA</option>
           <option value="3000000">Up to ₹30 LPA</option>
-
         </select>
-
         <select name="sortBy" value={filters.sortBy} onChange={handleChange}>
           <option value="">Sort By</option>
           <option value="date">Newest</option>
@@ -232,6 +212,7 @@ const ViewJobs = () => {
         </select>
       </div>
 
+      {/* Jobs */}
       <div className="job-cards">
         {filteredJobs.length > 0 ? (
           filteredJobs.map((job) => (
@@ -246,26 +227,20 @@ const ViewJobs = () => {
               <div className="job-row"><strong>Posted:</strong><span>{new Date(job.posted_at).toLocaleDateString()}</span></div>
               <div className="job-row">
                 <strong>Status:</strong>
-                <span
-                  className={`status-badge ${job.job_status}`}
-                >
-                  {job.job_status}
-                </span>
+                <span className={`status-badge ${job.job_status}`}>{job.job_status}</span>
               </div>
 
-
-              {/* Icon Container */}
+              {/* Buttons */}
               <div className="buttons-container">
                 <button className="edit-btn" onClick={() => openEditModal(job)}>
-                  <i className="fas fa-edit"></i> {/* Edit Icon */}
+                  <i className="fas fa-edit"></i>
                 </button>
                 <button className="delete-btn" onClick={() => handleDeleteJob(job.job_id)}>
-                  <i className="fas fa-trash-alt"></i> {/* Delete Icon */}
+                  <i className="fas fa-trash-alt"></i>
                 </button>
                 <button className="close-btn" onClick={() => handleCloseJob(job.job_id)}>
-                  <i className="fas fa-times-circle"></i> {/* Close Icon */}
+                  <i className="fas fa-times-circle"></i>
                 </button>
-
               </div>
             </div>
           ))
@@ -273,108 +248,67 @@ const ViewJobs = () => {
           <p>No jobs found.</p>
         )}
       </div>
-      <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        contentLabel="Edit Job Modal"
-        style={{
-          overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' },
-          content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            padding: '1.5rem', // Reduced padding inside modal
-            width: '100%',
-            maxWidth: '500px', // Limit the width of the modal
-            borderRadius: '10px',
-            maxHeight: '90vh', // Limit the height to 90% of the viewport height
-            overflowY: 'auto', // Allow scrolling if content exceeds the max height
-          },
-        }}
-      >
+
+      {/* Edit Job Modal */}
+      <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Edit Job Modal" style={{
+        overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' },
+        content: {
+          top: '50%', left: '50%', right: 'auto', bottom: 'auto',
+          transform: 'translate(-50%, -50%)', padding: '1.5rem', width: '100%', maxWidth: '500px',
+          borderRadius: '10px', maxHeight: '90vh', overflowY: 'auto'
+        }
+      }}>
         {editingJob && (
           <form className="edit-job-form" onSubmit={handleUpdateJob}>
             <h2 className="modal-heading">Edit Job</h2>
+            {/* Your Edit Fields Here */}
             <label htmlFor="title">Job Title</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={editingJob.title}
-              onChange={handleEditChange}
-              placeholder="Enter Job Title"
-            />
+            <input type="text" id="title" name="title" value={editingJob.title} onChange={handleEditChange} placeholder="Enter Job Title" />
             <label htmlFor="skills_required">Skills Required</label>
-            <input
-              type="text"
-              id="skills_required"
-              name="skills_required"
-              value={editingJob.skills_required}
-              onChange={handleEditChange}
-              placeholder="Enter Skills"
-            />
+            <input type="text" id="skills_required" name="skills_required" value={editingJob.skills_required} onChange={handleEditChange} placeholder="Enter Skills" />
             <label htmlFor="experience_required">Experience Required</label>
-            <input
-              type="text"
-              id="experience_required"
-              name="experience_required"
-              value={editingJob.experience_required}
-              onChange={handleEditChange}
-              placeholder="Enter Experience"
-            />
+            <input type="text" id="experience_required" name="experience_required" value={editingJob.experience_required} onChange={handleEditChange} placeholder="Enter Experience" />
             <label htmlFor="salary">Salary</label>
-            <input
-              type="text"
-              id="salary"
-              name="salary"
-              value={editingJob.salary}
-              onChange={handleEditChange}
-              placeholder="Enter Salary"
-            />
+            <input type="text" id="salary" name="salary" value={editingJob.salary} onChange={handleEditChange} placeholder="Enter Salary" />
             <label htmlFor="location">Location</label>
-            <input
-              type="text"
-              id="location"
-              name="location"
-              value={editingJob.location}
-              onChange={handleEditChange}
-              placeholder="Enter Location"
-            />
+            <input type="text" id="location" name="location" value={editingJob.location} onChange={handleEditChange} placeholder="Enter Location" />
             <label htmlFor="job_type">Job Type</label>
-            <select
-              id="job_type"
-              name="job_type"
-              value={editingJob.job_type}
-              onChange={handleEditChange}
-            >
+            <select id="job_type" name="job_type" value={editingJob.job_type} onChange={handleEditChange}>
               <option value="Full-time">Full-time</option>
               <option value="Part-time">Part-time</option>
               <option value="Contract">Contract</option>
               <option value="Internship">Internship</option>
             </select>
             <label htmlFor="description">Job Description</label>
-            <textarea
-              id="description"
-              name="description"
-              value={editingJob.description}
-              onChange={handleEditChange}
-              placeholder="Enter Job Description"
-            />
+            <textarea id="description" name="description" value={editingJob.description} onChange={handleEditChange} placeholder="Enter Job Description" />
             <div className="modal-buttons">
               <button type="submit">Update</button>
-              <button type="button" onClick={closeModal}>
-                Cancel
-              </button>
+              <button type="button" onClick={closeModal}>Cancel</button>
             </div>
           </form>
         )}
       </Modal>
 
-    </div>
+      {/* Confirm Modal */}
+      <Modal isOpen={confirmModalOpen} onRequestClose={() => setConfirmModalOpen(false)} contentLabel="Confirm Action" style={{
+        overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' },
+        content: {
+          top: '50%', left: '50%', right: 'auto', bottom: 'auto',
+          transform: 'translate(-50%, -50%)', padding: '1.5rem', width: '90%', maxWidth: '400px',
+          borderRadius: '10px', textAlign: 'center'
+        }
+      }}>
+        <div className="confirm-modal-content">
+          <h2>Are you sure?</h2>
+          <p>{confirmAction === 'delete' ? 'This will permanently delete the job.' : 'This will close the job.'}</p>
+          <div className="confirm-modal-buttons">
+            <button className="yes-btn" onClick={confirmActionHandler}>Yes</button>
+            <button className="cancel-btn" onClick={() => setConfirmModalOpen(false)}>Cancel</button>
+          </div>
+        </div>
 
+      </Modal>
+    </div>
   );
 };
 

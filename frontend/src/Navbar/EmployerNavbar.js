@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './EmployerNavbar.css';
 
-const EmployerNavbar = ({ isAuthenticated = true, userRole = 'employer', onLogout }) => {
-  const [showDropdown, setShowDropdown] = useState(false);
-  const navigate = useNavigate(); // Initialize navigate function
-
-  const handleProfileClick = () => {
-    setShowDropdown(!showDropdown);
-  };
+const EmployerNavbar = ({ isAuthenticated = true, userRole = 'employer' }) => {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.clear();         // Clear all local storage
-    navigate('/login');           // Redirect to login page
+    localStorage.clear();
+    navigate('/login');
+  };
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
   };
 
   return (
@@ -22,34 +21,24 @@ const EmployerNavbar = ({ isAuthenticated = true, userRole = 'employer', onLogou
         {/* Logo */}
         <h2 className="navbar-logo">CAREER CONNECT</h2>
 
-        {/* Navbar Links */}
-        <div className="navbar-links">
+        {/* Hamburger Icon */}
+        <div className="navbar-hamburger" onClick={toggleMobileMenu}>
+          ☰
+        </div>
 
+        {/* Navbar links */}
+        <div className={`navbar-links ${showMobileMenu ? 'show' : ''}`}>
           {isAuthenticated && userRole === 'employer' && (
             <>
               <Link to="/employer/dashboard" className="navbar-link">Dashboard</Link>
               <Link to="/employer/post-job" className="navbar-link">Post Job</Link>
+              <Link to="/employer/profile" className="navbar-link">Profile</Link>
             </>
           )}
 
-          {isAuthenticated ? (
-            <>
-              {/* Profile Dropdown */}
-              <div className="navbar-profile-container">
-                <button className="navbar-profile-button" onClick={handleProfileClick}>
-                  Profile ▾
-                </button>
-                {showDropdown && (
-                  <div className="navbar-dropdown">
-                    <Link to="/employer/profile" className="navbar-dropdown-item">My Profile</Link>
-                  </div>
-                )}
-              </div>
-
-              {/* Logout */}
-              <button className="navbar-logout" onClick={handleLogout}>Logout</button>
-            </>
-          ) : null}
+          {isAuthenticated && (
+            <button className="navbar-logout" onClick={handleLogout}>Logout</button>
+          )}
         </div>
       </div>
     </nav>

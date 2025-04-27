@@ -1,131 +1,197 @@
 /* Global Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Navbar Container */
-  .navbar {
-    background-color: #2f3b52; /* Dark Blue Background */
-    padding: 1rem 2rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar Container */
+.navbar {
+  background-color: #2f3b52; /* Dark Blue Background */
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Logo */
+.navbar-logo {
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Navbar Links */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  transition: max-height 0.4s ease;
+}
+
+/* When mobile menu opened */
+.navbar-links.show {
+  max-height: 500px;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Hamburger Icon (hidden on Desktop) */
+.navbar-hamburger {
+  display: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 0.1px;
+  z-index: 1001;
+}
+
+/* Navbar Link */
+.navbar-link {
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 2rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: #00bcd4; /* Light Blue Hover */
+}
+
+/* Logout Button */
+.navbar-logout {
+  background-color: #f44336; /* Red Background */
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-logout:hover {
+  background-color: #d32f2f; /* Darker Red */
+}
+
+/* Profile Dropdown */
+.navbar-profile-container {
+  position: relative;
+  margin-left: 2rem;
+}
+
+.navbar-profile-button {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.navbar-dropdown {
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.navbar-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.navbar-dropdown-item {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #2f3b52;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
   .navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  /* Logo */
-  .navbar-logo {
-    color: #ffffff;
-    font-size: 1.8rem;
-    font-weight: 700;
-    text-decoration: none;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+
+  .navbar-hamburger {
+    display: block;
   }
-  
-  /* Navbar Links */
+
   .navbar-links {
-    display: flex;
-    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    width: 100%;
+    background-color: #2f3b52;
   }
-  
-  .navbar-link {
-    color: #ffffff;
-    text-decoration: none;
-    margin-left: 2rem;
-    font-size: 1rem;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-  }
-  
-  .navbar-link:hover {
-    color: #00bcd4; /* Light Blue Hover Effect */
-  }
-  
-  /* Logout Button */
+
+  .navbar-link,
+  .navbar-profile-button,
   .navbar-logout {
-    background-color: #f44336; /* Red Background */
-    color: #ffffff;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 2rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  .navbar-logout:hover {
-    background-color: #d32f2f; /* Darker Red on Hover */
-  }
-  
-  /* Responsive Design */
-  @media screen and (max-width: 768px) {
-    .navbar-container {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .navbar-links {
-      flex-direction: column;
-      width: 100%;
-      margin-top: 1rem;
-    }
-  
-    .navbar-link {
-      margin: 0.5rem 0;
-      font-size: 1.2rem;
-    }
-  
-    .navbar-logout {
-      margin-top: 1rem;
-    }
+    margin: 0.8rem 0;
+    font-size: 1.2rem;
+    text-align: center;
+    width: 100%;
   }
 
   .navbar-profile-container {
-    position: relative;
-    margin-left: 2rem;
+    margin-left: 0; /* Remove margin on mobile */
+    width: 100%;
   }
-  
-  .navbar-profile-button {
-    background-color: transparent;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    text-transform: uppercase;
-  }
-  
+
   .navbar-dropdown {
-    position: absolute;
-    top: 2.5rem;
-    right: 0;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    min-width: 160px;
-    z-index: 999;
+    position: static;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
   }
-  
-  .navbar-dropdown-item {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: #2f3b52;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: background-color 0.3s ease;
+}
+
+/* Super small screens (<=480px) */
+@media screen and (max-width: 480px) {
+  .navbar-logo {
+    font-size: 1.3rem;
+    text-align: center;
+    width: 100%;
   }
-  
-  .navbar-dropdown-item:hover {
-    background-color: #f0f0f0;
+
+  .navbar-container {
+    align-items: center;
   }
-  
-  
+
+  .navbar-links {
+    align-items: center;
+  }
+}

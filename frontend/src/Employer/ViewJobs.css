@@ -312,3 +312,56 @@
   background-color: #f8d7da;
   color: #721c24;
 }
+
+/* Confirm Action Modal */
+.confirm-modal-content {
+  text-align: center;
+}
+
+.confirm-modal-content h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.confirm-modal-content p {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 1.5rem;
+}
+
+/* Confirm Modal Buttons */
+.confirm-modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.confirm-modal-buttons button {
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Yes Button */
+.confirm-modal-buttons button.yes-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.confirm-modal-buttons button.yes-btn:hover {
+  background-color: #218838;
+}
+
+/* Cancel Button */
+.confirm-modal-buttons button.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.confirm-modal-buttons button.cancel-btn:hover {
+  background-color: #c82333;
+}

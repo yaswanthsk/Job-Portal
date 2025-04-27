@@ -50,7 +50,6 @@ router.get('/jobs/:jobId',verifyToken, getJobDetails);
 // Post route to create job seeker profile
 router.post('/jobseeker/profile', verifyToken, upload.fields([
     { name: 'resume', maxCount: 1 },
-    { name: 'profile_photo', maxCount: 1 },
   ]), createJobSeekerProfile);
   
 
@@ -60,7 +59,6 @@ router.get('/jobseeker/profile', verifyToken, getJobSeekerProfile);
 // Update job seeker profile (with optional resume/profile photo upload)
 router.put('/jobseeker/profile', verifyToken, upload.fields([
   { name: 'resume', maxCount: 1 },
-  { name: 'profile_photo', maxCount: 1 },
 ]), updateJobSeekerProfile);
 
 router.post('/apply-for-job/:jobId', verifyToken, applyForJob);

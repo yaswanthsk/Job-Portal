@@ -45,7 +45,7 @@ const Home = () => {
     <div className="Home-container">
       {/* Navbar */}
       <nav className="Home-navbar">
-        <div className="Home-logo">CODE CAREER</div>
+        <div className="Home-logo">CAREER CONNECT</div>
         <div className="Home-nav-links">
           <a href="/login" className="Home-nav-btn">Login</a>
           <a href="/signup" className="Home-nav-btn signup">Signup</a>

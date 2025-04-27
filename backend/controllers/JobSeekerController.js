@@ -1,5 +1,7 @@
 const pool = require('../config/db');
 const upload = require('../middleware/multer'); // Assuming multer setup is in the `middleware/multer.js` file
+const fs = require('fs');
+const path = require('path');
 
 // Toggle Save/Unsave Job
 // const toggleSaveJob = async (req, res) => {
@@ -266,6 +268,16 @@ const updateJobSeekerProfile = async (req, res) => {
     if (github_url) { fields.push('github_url = ?'); values.push(github_url); }
 
     if (resume_filename) {
+      // 🔥 Delete old resume file if exists
+      const oldResume = existing[0].resume_link;
+      if (oldResume) {
+        const oldResumePath = path.join(__dirname, '..', 'uploads', oldResume);
+        if (fs.existsSync(oldResumePath)) {
+          fs.unlinkSync(oldResumePath);
+          console.log('✅ Old resume deleted:', oldResume);
+        }
+      }
+
       fields.push('resume_link = ?');
       values.push(resume_filename);
     }
