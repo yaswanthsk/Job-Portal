@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2025 at 08:33 PM
+-- Generation Time: Apr 28, 2025 at 12:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -90,6 +90,13 @@ CREATE TABLE `applications` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `applications`
+--
+
+INSERT INTO `applications` (`application_id`, `jobseeker_id`, `job_id`, `application_status`, `created_at`) VALUES
+(7, 20, 13, 'Pending', '2025-04-28 09:57:42');
+
 -- --------------------------------------------------------
 
 --
@@ -152,6 +159,21 @@ CREATE TABLE `employer_applications_view` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `employer_profile_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `employer_profile_view` (
+`user_id` int(11)
+,`username` varchar(100)
+,`email` varchar(255)
+,`profile_picture` text
+,`company_name` varchar(255)
+,`company_description` text
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jobs`
 --
 
@@ -180,7 +202,7 @@ INSERT INTO `jobs` (`job_id`, `company_id`, `title`, `description`, `skills_requ
 (7, 1, 'AZURE DEVELOPER ', 'AZURE ENGINEER', 'AZURE', '9', '27 LPA', 'BANGLORE', 'Full-time', '2025-04-16 01:09:56', 'active'),
 (10, 1, 'GEN AI ASSOCIATE', 'GEN AI ASSOCIATE ', 'PYTHON', '2', '12', 'PUNE', 'Full-time', '2025-04-24 03:26:23', 'active'),
 (11, 1, 'DEMO', 'DEMO DEMO DEMO DEMO DEMO', 'DEMO', '2', '5 LPA', 'HYDERABAD', 'Full-time', '2025-04-25 01:22:48', 'closed'),
-(12, 1, 'de', 'dededededdedededdedededed', 'de', 'de', 'de', 'de', 'Part-time', '2025-04-26 09:03:44', 'active');
+(13, 1, 'demo', 'demo demo demo demo demo demo', 'demo', 'demo', '6 lpa', 'hyderabad', 'Contract', '2025-04-28 04:08:55', 'active');
 
 -- --------------------------------------------------------
 
@@ -212,6 +234,44 @@ CREATE TABLE `jobseekerprofile` (
 
 INSERT INTO `jobseekerprofile` (`jobseeker_id`, `user_id`, `name`, `skills`, `experience`, `location`, `resume_link`, `created_at`, `phone`, `profile_photo`, `is_fresher`, `current_title`, `willing_to_relocate`, `linkedin_url`, `github_url`) VALUES
 (20, 10, 'yash', 'react', '0', 'hyd', '1745665102147.pdf', '2025-04-26 10:58:22', '9876543211', 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUQExIVFRIVFxMWFRUWGBcVFRUYGhoYFhsYFhgdHyggGBslGxUXITEhJykrMC4uGB8zODMsNygvLisBCgoKDg0OGhAQGy0lHyUtLTErLS0tLS0uLS8yMi8vLS4vLS0tLS8uNS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tNf/AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAwADAQEAAAAAAAAAAAAABQYHAQMECAL/xABHEAACAQIDBQUGAggDBAsAAAABAgADEQQSIQUGMUFRBxNhcYEiMlKRobFCwRQjYnKSwtHwM4KyJDSU0xZDU2OToqOz0uHx/8QAGgEBAAIDAQAAAAAAAAAAAAAAAAMEAQIFBv/EAC0RAAIBAgQFBAEEAwAAAAAAAAABAgMRBBIhMQUTIkFRMmGBobFxweHwI9Hx/9oADAMBAAIRAxEAPwDcYiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiJw7AAkmwGpJ4AeMA5kXtPb+HoOtKpVHev7tIe1UI4lso91QASWNgLamZNvp2lZsWpw5z0KNPNR5I9d1BWrUH4lRWJC/EPlmmIxVSo7u9RmepfvWJuX1BObqLqNOGg6CRSqpbE0aLe5vO1+1bCI/dYf/aH5vmWlh18WqtxH7oa/K50kO/bJTQ60zWPSkpSmD07yoc7+fdrMYVbn++HGcqLnw4+kjdVkqoxNw2b2wUanv0O6HVq1O3qLZ/kpkie1nZ2YIGdyeJVcqDr7VXJcems+flW/gOfgJxbpwjmyHJifUeyt7cFiCFpYqiXP4O8TP8AK+vpJufI+FxtWn/h1alO/wADsnzykTR9yu0lqZWlVLsLavXxRIY+ZpHL/EB4zeNVPcilRtsbjE8my8etemKq2yngQ6VFPiGQkET1yYhEREAREQBERAEREAREQBERAEREAREQBERAF5nG/wB2g4E4bE4SliM9d6VSmppq7JmIK27wDL15z09sWOqU8GVWr3VJ/ZdhrUqk+7Qpj9qxLNfRVPG9p8/Lbn9JDUqW0RNSpp6s/dNdV6Ej72/KKfPrZobhbpqD1v8A2D85zn1DdeP2PzlctHFP8Xl+YELwb0H1v+UILG3UEeemn1tOEOjeh+tvzgHJ0XzN/QcPuYccF+fmf7tHHKP794wH1Lc9T6n/APfpMAMLaDU8zx16D+s4K256/UQjWHjw8uv9+c5W3IXP0HkOcyC37gb5VsLXCtUZqb2U3Tvm+lqhFr8CbccrcJ9DYHFJVprVpsro4DKynMpB6HnPklwRqRY8tLfKfQ3ZPjzWwmcnNqLuT7WbgyVRzqLp7drurITc3k9KXYr1o9y7xEScriIiAIiIAiIgCIiAIiIAiIgCIiAIiIBjXb+5z4VSx1FYqv4RbICxHNjmA8AviZlJLAcdOhI/0y6dsWOd9purEWpJTRFBvlBGe7ftNmDeRUcRK/ujs0YjGUaLC6lizjqqguQfA5besqVH1Mu01aKJLYG4mIxKCqStGm2qlgWZh1CDl5kSWr9ltUD2cShPRqbKPmGP2mrooGgn6lfOybKjBdp7m42jqaJdR+Kke8HyHtfSQJNiRwOoI6ek+lWpgyN2jsGhW/xaNOoeRdQWHk3GZVTyMp8934fSTmzN0cZXsVoFVP4qn6sfI+0fQGbNs7d7D0TelQpUz8SqM38XGSi0wIdTwMpk+H7LqpF3xCKeioz/AFJX7Twbb7PcTQQ1EZayjVgoKuB1CG9/Q38JtU4IvMZ2MqPmpBcWB16cj5eM0XsN2waeMfCk+xiEJA6VKeoI80zX/dXpK1v5sxaGOqUwLI+WottMue9/TMG9Jx2fOy7TwhBs3e2153DKV8yCR5kSeD1TIqi6Wj6diIlwoiIiAIiIAiIgCIiAIiIAiIgCIiAJ4dqbSWitzqx91eZ/oPGdm0catJC7eg5k8hKLi8U1Ry7G5PyA6DwnOx+N5Cyx9T+jeMbmQb84hqm0MTUb3mcX9EUD6ASW7JqV8fm+GjUPzKr/ADGQ2+f+/V/3k/8AbSXzse2Zlo1cUeNRu7X91NT82J/hExGTdNN90i7BbGiRE/D1VGhYDzIEjJT9xOFN9RrOYAiJwTzgHMTrWsp0DKT0BBnZAMi7YqNsVSf4qIX+F3P84lW3ab/bMOb6itSIPMEMCD6EAzTe1vZofCLiPxUGH8LkIR88p9Jmm6i3xlAftg/IE/lJG7U2/ZkUz6W2NthawynSoOI5HxX+klJm9KoVIZTYjUEcpeNjbSFZL8HGjD8x4Ga4DHc3on6vyUpRsSERE6hoIiIAiIgCIiAIiIAiIgCLxIjeXGd3Syj3n9n05n8vWR1qqpQc32MpXK9tzaPfVND7C6L49W9f6SKrVAqlzwUFj5AXM/c/FamGVkPBgVPkRaeQnUdSblLuTpWMs7QcJVo4wtVQIK4RkOa62CqhuQOII10PEcZN7obzY0Kuz8Dh8PWNMFmrFqndjMxa7ZgltTa3O2l5NdpNHv8AZ1HE6Z6TqH8L3pOv/iBflO3swwIoVcRTtbvKOArjxD0mzf8AqB/nPSQcFT0WxM4yzKz0PE1LbmOzUzUo4eirMpqUxUpipY2OQ6uy3HH2QepnibslxBNzi6RJ4k0nJ+eaaric2X2LZtOPS+pHIta9gdL2vKf2h7Kesifooqh8uViyO7hr3uWAKm4uPZNhy0m1LrdrpGtV8tXs2VhezXaFH2qGKpA/stVoH5i8mh2gNghTw20MLXWuqLeopp1Fq20zg3HEj0lo3QwjJhz3xZapa4XKwUCwFsraKCbkW1GniJWt7dkU8dtTDYapfu6NB6tQDQtnaypmHC/dk6cgeszJJStKzXlGIyk45ldPwzhO0kYljh8Dha9SuytlLd2ipp77HMbAEjj4DnINuzraVf2sRiqdzyd6tY/UAD0k1sPYVLAbY7ujcUcRhXKqSWKOHUlQx1IIpsdTfj0ls3pwpqYYimX764OUBrFdQVAXQnUHXppMRUXJKNkn3ZmUpKLcrt+EZ0OyPEDUYuiDytScfXNPWcLtvZ62SrSxNC4F3Dv3WvvEXzqo52LAAcBJfs92VUpFv0tXNkZQVp1Ed2LZgc2liBcZiRoQJc8Nmt7XU5b2zFeWcD2Q3W1xz0vYZq9HdMxRlzFezRlu9e8+0ERsFjsNh6a11ZVrq1TutNbiwc3Btpa+o5aytbiYapVx6LSUVDTzszBiEygFc2YrexLC2lzfhNJ7RsCuIbBYci+atVcj9mnRdm9PdkP2SUhSwuJxpHEhR4imuaw8Sz29BNJOLp7bm2WWbfQstGpmUNYi44HiOoPlPbs7GGlUDjyI6jmJ4MLTKoqnUgAE9TzPzvO2ebUss7x7PQjZo9GoGUMpuCAQfAz9yu7pY26tRP4faXyPEeh+8sU9ZhqyrU1NFdqzEREnMCIiAIiIAiIgCIiAJS95sTnrEckAUefE/U29Jc2NhfpM5rVMzMx4sSfmbzkcXqWpxh5f4JKa1PxEROASkZvAgbZuOU/ha/lpRf7m8UnNGlgdporMi4alRxIQFm7llVhUCjVu7cXI19lmnG8DFcPiV/DWoVR5VERnB9VVgf3Vkt2eV8+zsOeisn8DMv5Tu4eadJP4J49SJvBYunVQVKTrURtQyEMD6id8iK+7GEZi/cKjt7z0i1FmPUtTKknxnT/0Uw/xYn/i8X/zZL0m/USW1dpUsPTNWs4RB14k8lUcWY8gNZCbq4Gqz1MfXQpVxBZhTb3qVIBVoo37WUOx8XMkcHu9haTCqKQNReFSoWq1F62eoWYfOSaNcA9RfWLpKyFm3dle3t2ZVcLicOubEYcpUpre3eZM4anf9pKrjztJTYu2KOKp95Ra/J1Oj025pUXirDoZ7ifXwkXjNh4WuRWakpcgWqoWp1Cp1H6xCGt6xdNWYs07olZ14mulNTUqMqIouzMQqgdSToJDf9FMP8WJ/wCLxf8AzZ2U91sICGNEVGU3BrM9cg9R3jNY+MWiOoi8HX/SatbaNiMPSoVKWFLC3eA+3VrAHUKcqKp5hSeci9yqdtj0R8VYHztX/on0lp3wrZMDiW6UagHmVyj6mVfdPXB4Wn+GmjVD4vUaplHohJ/zr0kdeaVJs1loiciInBK569k4nu6qPyvY+R0P3v6S/wAzWaDs6tnpI/Mqt/O2v1nb4PU9UPkiqI9MRE7ZGIiIAiIgCIiAIiIB5dpvajUPRH+xmfy+7Z/wKv7jfaUKcDi7/wAkV7EtPYRETkEh5tpYUVaT0z+JSBbiDbQj1nj7H8VmwTJzp1XHoyq/3ZvlJUSrdnNbuNoYvBnQPmZB4oxIt5pUv/lnSwEtJR+SWk9TTYiR23Nt0cJT72s1gTZQBdmPGyj8+Al4nPRtKgz0alNSAzo6qTwBKkC/hczy7P2ytQ5KiPQrf9lVAUnr3bXy1B4qTyvaZvtztNxD3XDIKKW95rPVN7f5V48LHzlYqbzYstdsVUbnZmzIT0KH2T5Wm6gzXMbhtHbNOkcoD1avKlRGep5sOCDTixAnfsqm60kFQAPa7AG4UklsoPMC9r+Ewgby4sNcYmohJPsoe7RTc6ZFso+Usew+0rE07Cuq1066JVFvEey2nIj1mXAZjX4kTu7vFQxiF6LG62zows6X4XHQ2OouND0ktIzYqPapicmz6i3saj0kH8Qc/RDPPu5hO6w1FOfdoW/eKi/9PICRXaziO9rYXArxZs7DpnPdqfl3ks4FtBwEpY+VoRj8kFV6iIicwiEu27TXw6eGYf8AmMpMue6/+7j95vvOnwl/53+j/Y0qbEvERPRkIiIgCIiAIiIAiIgHnx6ZqVReqOPoZns0ozO8XRyOyfCxH10+k4fGIeiX6okpnTEROKSiUbewthMfQx6jS4zW5lfZYf5qZsPIy8yL3l2X+k4d6Q9/3kPRxqPnqPWT4Wry6ib22ZmLsy6YesrqtRCGRgGUjgQRcEehlW3g3eGNx1Nat/0ajRzMASMzu5AW44C1O5tr7I6yo7h78rhk/RcVm7pSe7cAsafVGXjlvwtw4cOF22DvphsXXfD0swIUMjMMve297KOItpx1Oumk7dmizdM8+K3ZoUtaeCwzD4imdh5hs3znVRqZCCKNIEcLU6Qt5aC0uUqu/NfGUUWvhUSoouKtNqfeEdHW3tdQR5HrMxlfRkqkktUdFeuXJZqVMk8bpTN/MkG8/eF3co1jd8FhgPjyZGPllC3n53ExeNr5q2JRKVK2Wmgpd2ztzY3uwUWsOtz0lwiUraBzi1oiobK3aGD2gr0ARh61GqGS5IR1KMNSbkEXt0s3WW5mAFybAakngB1Mr+8m9+HwdSlSq5iXuWy6mmvAMw53OlhroemtM373/StSOGwpbK4tVqkFbrzRQddeZPLQcbjFmyK6R5tkVv07alXGf9VTuU8rFKY9Rmbzl5kHubsr9HwyhhapU/WP1BI0X0FvW8nJxsXVz1HbZaFeTuxERKxqJeN3Uth08cx+bEyjgTRMJSyIqfCoHyE63CIXqSl4X5/4R1NjuiInoCIREQBERAEREAREQBKhvXhctUVOTj6jT7WlvkftvBd7SKj3h7S+Y5eouJUx1Dm0WlutUbRdmUWIieUJxESp73bwVaTijSIX2QWewJufwi+g0sfWT4bDTxE8kCOrVjTjmkQW/mxSlVsSi/qmK94RwWo1/kDa9+p8ZWadZkfvEYqyMCrDQqQdLTYNz8Ga2BJxF6gxDVC2fW6+4PL3Li3WZ3vZuvUwbHi+HYjJU6cbK/RtePO3oO7Ti4LI3drQtQ1gpeS67v8AadRZAuLBp1BxdFLI/jlFyp8LEePKSdTtJwA4PUbypOP9Vpi78B5E/Uj8hP3l1I6L/LM5Eb3ZslPtKwB4vUXzpsf9N54ttdp2HVCMMGq1TwLKyIvi17M3kB6iZKRoD4kfb+s5fSxHQH+/lGRDMztxuKqVnetUcvUY3Ynj0+Q0FuWkmtztkd/XV2X9Uh9o/hZwCyp8hc+XjPJu9sGrjKpSkMqA+3UI9mmD92twX7cZo29GzhhdnquHzIKNSm2YGzEtdCzHmTn1iSclki7N6Ec3lg5eETESm7qbxVqlUUapDhgbNYBgeIBtoQbGXKcLFYWeHnkmVaVWNWOaIiIlclJHYOF7yso5L7R9OH1tLzIXdfBZKfeH3qlj5Ly+fH5Sanp+HUOXRu93r/ogm7sRES+aiIiAIiIAiIgCIiAIiIBUN5tm5H71R7DnXwb+h/rISaNXoh1KMLqRYiUfa2zWovY6qfdbr4HxnneI4N05cyOz39mSwlfQ8BNtTwHGZttGp3zu5/ESfEdPkLS7byYnJQbq/sD14/QGUadPgNC0JVX30X7/AN9jncQqaqJrW7WPoVqCLR9laaqhpn3ksLAHqNOPOenE4cMCjqGVhYggEMOhB4zIsHi3pOKlNirjgR9j1HgZeNkb8IwCYlch+NQSh8xxX0v6SxXwUou8NV9l7C8RhJZamj+v4InbXZrTcl8NU7o/A13T0PvL9ZWa+4WPU6U0fS10qL0t+LKZsNCqlQZqbq69VIP2nJlPM1ozpJReqMao7hY9tDSVPFqiW5fCSeUsWyOzMAhsTWzf93SuB5FzrbyA85oc4quqDM7Ki9WIUfWMzewslqzqwGBSkgpUkVEHBVFgPHxPjPPvY9FcJVp1msKisq21YtxGUcyCAfSRW1t9qVMFcOO8f4zcIPzb0sPGUbH46pWc1KrlmPXgB0A4AS5h8FOTzT0X2c7FcQpxTjDV/R58Ge7KsvFSG8yNZpVGoGUOODAEeRF5msum6uJzUMvNCV9OI+9vSQ8eoXpRqLs7fD/n8nPwFS0nHyTMkdh7ONapr7i6t+Q9Z5sDg2quEUa8zyA6mXrAYNaSBF4DieZPMmcbAYN1pZpelffsdOcrHeBOYiemIRERAEREAREQBERAEREAREQBOnFYZailHFwf7uOhndEw0mrMGN9pez3oVKScaRDFW6m4BB8QLfOUyfQG9GwkxlBqLaN71N/gccD5akEdCZg+0cDUoVGo1Vy1ENiPsQeYPEGWcJGEKahHSxzcXCSnmfc88REtFQ/K496DpVpNldTcHrbiD1BvYia/u7tpMXRFZNDwdOJRuY8uh5iYnjm9q3QT3bsbdfCVhUXVDYVE+Jf/AJDiD/Uyji6HNV1ui9gsU6MrP0v+3Ni23tanhaLVqh0GiqOLseCr4n6C55TH8RtSpiar1apuxNwOSjgFXoBP3vZvC2MrZtRSW4pJ0HxH9o//AFIrBtZh46TGEoctXe7M47F86WWPpX2SMREvlAS0dnuFeriGpIPZKXduS2IsT8yLeMrVCizsqIpZ2ICqNSSeAE3HcjdsYKhlaxrVLNVYdeSA9FufMknnK2KjCdNwl3LOFjJ1FJdiZ2fgEorlUeZ5sepnqiJUjFRWWK0OoIiJsBERAEREAREQBERAEREAREQBERAEr2926tLG09fYrKP1dQDUfst8S+HLlLDEym07o1lFSVmfO22dkVsLUNKsmVuR4q4+JDzH9m08BM+i9rbKo4mmaVZA6nrxU9VPFT4iZ3W7NalPFUmpsKmG7xC+awqIoIJB5ONLXHXhzlqFZNanPqYWUX06o8tbsgdgHXFgMQCyvTuA1tQGDcAfCR1Xshxo92thz5tUX+QzbIlfmSLTwtPwYlT7IsaeNXDjyaof5JJ4PsdYEGpjBpySmeP7xb8prURzJBYWmux81VEKkqRZlJBHQg2I+c7tn4GpXqClSQvUbgo+5PADxOk0DHdndWvja7lhSwzVC4b3nbNZmCry9osLn5GXzYWwaGETJRQLf3mOruerNz8uA5SxKsktCpDCyb10RDblbmJgx3r2fEkWLfhpg8VT824nwEtkRKspNu7OjCCirIRETBsIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIB/9k=', 'Fresher', 'Associate Engineer', 'Yes', 'http://www.linkedin.com', 'http://www.linkedin.com');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `jobseeker_applications_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `jobseeker_applications_view` (
+`application_id` int(11)
+,`job_id` int(11)
+,`jobseeker_id` int(11)
+,`job_title` varchar(255)
+,`job_location` varchar(255)
+,`salary` varchar(100)
+,`experience_required` varchar(100)
+,`skills_required` text
+,`location` varchar(255)
+,`job_description` text
+,`job_type` enum('Full-time','Part-time','Contract','Internship')
+,`application_status` varchar(50)
+,`applied_at` timestamp
+,`user_id` int(11)
+,`username` varchar(100)
+,`email` varchar(255)
+,`applicant_name` varchar(255)
+,`skills` text
+,`experience` varchar(255)
+,`resume_link` varchar(255)
+,`phone` varchar(15)
+,`profile_photo` text
+,`is_fresher` enum('Fresher','Experienced')
+,`current_title` varchar(255)
+,`willing_to_relocate` enum('Yes','No')
+,`linkedin_url` varchar(255)
+,`github_url` varchar(255)
+,`company_id` int(11)
+,`company_name` varchar(255)
+);
 
 -- --------------------------------------------------------
 
@@ -320,6 +380,24 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `employer_profile_view`
+--
+DROP TABLE IF EXISTS `employer_profile_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `employer_profile_view`  AS SELECT `u`.`id` AS `user_id`, `u`.`username` AS `username`, `u`.`email` AS `email`, `u`.`profile_picture` AS `profile_picture`, `c`.`company_name` AS `company_name`, `c`.`company_description` AS `company_description` FROM (`users` `u` left join `companies` `c` on(`u`.`id` = `c`.`user_id`)) WHERE `u`.`role` = 'employer' ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `jobseeker_applications_view`
+--
+DROP TABLE IF EXISTS `jobseeker_applications_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `jobseeker_applications_view`  AS SELECT `a`.`application_id` AS `application_id`, `a`.`job_id` AS `job_id`, `a`.`jobseeker_id` AS `jobseeker_id`, `j`.`title` AS `job_title`, `j`.`location` AS `job_location`, `j`.`salary` AS `salary`, `j`.`experience_required` AS `experience_required`, `j`.`skills_required` AS `skills_required`, `j`.`location` AS `location`, `j`.`description` AS `job_description`, `j`.`job_type` AS `job_type`, `a`.`application_status` AS `application_status`, `a`.`created_at` AS `applied_at`, `u`.`id` AS `user_id`, `u`.`username` AS `username`, `u`.`email` AS `email`, `jp`.`name` AS `applicant_name`, `jp`.`skills` AS `skills`, `jp`.`experience` AS `experience`, `jp`.`resume_link` AS `resume_link`, `jp`.`phone` AS `phone`, `jp`.`profile_photo` AS `profile_photo`, `jp`.`is_fresher` AS `is_fresher`, `jp`.`current_title` AS `current_title`, `jp`.`willing_to_relocate` AS `willing_to_relocate`, `jp`.`linkedin_url` AS `linkedin_url`, `jp`.`github_url` AS `github_url`, `c`.`company_id` AS `company_id`, `c`.`company_name` AS `company_name` FROM ((((`applications` `a` join `jobs` `j` on(`a`.`job_id` = `j`.`job_id`)) join `companies` `c` on(`j`.`company_id` = `c`.`company_id`)) join `jobseekerprofile` `jp` on(`a`.`jobseeker_id` = `jp`.`jobseeker_id`)) join `users` `u` on(`jp`.`user_id` = `u`.`id`)) ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `job_details_view`
 --
 DROP TABLE IF EXISTS `job_details_view`;
@@ -401,7 +479,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `application_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `application_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `companies`
@@ -413,7 +491,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `job_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `jobseekerprofile`
