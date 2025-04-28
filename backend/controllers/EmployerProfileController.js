@@ -32,6 +32,27 @@ const getEmployerProfile = async (req, res) => {
   }
 };
 
+// const getEmployerProfile = async (req, res) => {
+//   const userId = req.user.userId;  // Extracting user ID from JWT
+
+//   try {
+//     // Query the view instead of joining tables directly
+//     const [rows] = await pool.execute(
+//       'SELECT * FROM employer_profile_view WHERE user_id = ?',
+//       [userId]
+//     );
+
+//     if (rows.length === 0) {
+//       return res.status(404).json({ message: 'Employer not found' });
+//     }
+
+//     res.status(200).json(rows[0]); // Send back the first row (the employer profile)
+//   } catch (error) {
+//     console.error('Error fetching employer profile:', error);
+//     res.status(500).json({ message: 'Internal server error', error: error.message });
+//   }
+// };
+
 
 //using transactions
 // PUT /api/employer/profile
