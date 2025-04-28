@@ -424,6 +424,36 @@ const getJobSeekerApplications = async (req, res) => {
   }
 };
 
+// const getJobSeekerApplications = async (req, res) => {
+//   const userId = req.user.userId; // From JWT token
+
+//   try {
+//     // Step 1: Get jobseeker's profile_id (this is linked to the user_id)
+//     const [jobSeekerResult] = await pool.execute(
+//       'SELECT jobseeker_id FROM JobSeekerProfile WHERE user_id = ?',
+//       [userId]
+//     );
+
+//     if (jobSeekerResult.length === 0) {
+//       return res.status(404).json({ message: 'Jobseeker profile not found' });
+//     }
+
+//     const jobseekerId = jobSeekerResult[0].jobseeker_id;
+
+//     // Step 2: Fetch applications for jobs the jobseeker has applied to using the view
+//     const [applications] = await pool.execute(
+//       `SELECT * FROM jobseeker_applications_view WHERE jobseeker_id = ? ORDER BY applied_at DESC`,
+//       [jobseekerId]
+//     );
+
+//     // Return the list of applications for the jobseeker
+//     res.status(200).json(applications);
+//   } catch (error) {
+//     console.error('Error fetching jobseeker applications:', error);
+//     res.status(500).json({ message: 'Internal server error', error: error.message });
+//   }
+// };
+
 module.exports = {
     toggleSaveJob,
     getSavedJobs,
